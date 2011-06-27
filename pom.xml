@@ -88,7 +88,7 @@
 				<version>2.1</version>
 				<configuration>
 					<useReleaseProfile>false</useReleaseProfile>
-					<goals>release</goals>
+					<goals>deploy</goals>
 					<arguments>-Pjavadoc</arguments>
 				</configuration>
 			</plugin>
