@@ -44,7 +44,6 @@
 				<version>2.1</version>
 				<configuration>
 					<releaseProfiles>javadoc</releaseProfiles>
-					<useReleaseProfile>false</useReleaseProfile>
 				</configuration>
 			</plugin>
 		</plugins>
