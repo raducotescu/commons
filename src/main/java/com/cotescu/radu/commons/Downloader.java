@@ -12,16 +12,35 @@ import java.nio.channels.ReadableByteChannel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * This class provides various methods useful for downloading files.
+ * @author Radu Cotescu
+ *
+ */
 public class Downloader {
-	private static String to = "." + File.separator;
 	private final static String UA = "Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0";
 
+	/**
+	 * This method downloads a file from a specified URL. If it is not specified
+	 * <i>where</i> to download the file it is assumed that the desired folder
+	 * is the current directory.
+	 * 
+	 * @param from
+	 *            a String containing the URL from where the file must be
+	 *            downloaded
+	 * @param where
+	 *            a String containing the folder where the folder must be
+	 *            downloaded; if it is null or the empty String ("") the file
+	 *            will be downloaded in the current directory
+	 * @return	a String containing the full path to the downloaded file
+	 */
 	public static String downloadFileFromURL(String from, String where) {
 		String file = null;
-		if (StringUtils.isEmpty(where)) {
-			where = to;
-		}
 		try {
+			String to = new File("." + File.separator).getCanonicalPath();
+			if (StringUtils.isEmpty(where)) {
+				where = to;
+			}
 			URL url = new URL(from);
 			URLConnection connection = url.openConnection();
 			/**
@@ -36,7 +55,7 @@ public class Downloader {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
 				tmpfile = sdf.format(new Date());
 			}
-			if (where.endsWith("/")) {
+			if (where.endsWith(File.separator)) {
 				tmpfile = where + tmpfile;
 			} else {
 				tmpfile = where + File.separator + tmpfile;

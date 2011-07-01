@@ -15,7 +15,7 @@ public class DownloaderTest {
 	
 	@Test
 	public final void testDownloadFileFromURL() {
-		assertNotNull((file = Downloader.downloadFileFromURL("http://radu.cotescu.com/", null)));
+		assertNotNull((file = Downloader.downloadFileFromURL("http://radu.cotescu.com", null)));
 	}
 	
 	@AfterClass
