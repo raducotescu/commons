@@ -8,7 +8,8 @@ import org.junit.runners.Suite;
 	FileUtilsTest.class,
 	HashUtilsTest.class,
 	PropertiesLoaderTest.class,
-	StringUtilsTest.class
+	StringUtilsTest.class,
+	DownloaderTest.class
 	})
 public class AllTests {
 }
