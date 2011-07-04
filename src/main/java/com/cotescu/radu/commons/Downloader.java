@@ -50,10 +50,16 @@ public class Downloader {
 			connection.setRequestProperty("User-Agent", UA);
 			InputStream is = connection.getInputStream();
 			ReadableByteChannel rbc = Channels.newChannel(is);
-			String tmpfile = url.getFile().replace("/", "");
-			if (StringUtils.isEmpty(tmpfile)) {
+			String fullPath = url.getFile();
+			String tmpfile = null;
+			if (StringUtils.isEmpty(fullPath)) {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
 				tmpfile = sdf.format(new Date());
+			} else if(StringUtils.isEmpty(tmpfile) && fullPath.length() == 1){
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+				tmpfile = sdf.format(new Date());
+			} else {
+				tmpfile = fullPath.substring(fullPath.lastIndexOf("/") + 1, fullPath.length());
 			}
 			if (where.endsWith(File.separator)) {
 				tmpfile = where + tmpfile;
