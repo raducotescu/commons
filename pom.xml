@@ -96,7 +96,7 @@
 		<extensions>
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ftp</artifactId>
+				<artifactId>wagon-ssh-external</artifactId>
 				<version>1.0-beta-7</version>
 			</extension>
 		</extensions>
@@ -120,12 +120,12 @@
 	</reporting>
 	<distributionManagement>
 		<repository>
-			<id>ftp-releases</id>
-			<url>ftp://connect.cotescu.com/releases</url>
+			<id>ssh-releases</id>
+			<url>scp://radu@connect.cotescu.com:2222/home/radu/www/radu/maven2/releases/</url>
 		</repository>
 		<snapshotRepository>
-			<id>ftp-snapshots</id>
-			<url>ftp://connect.cotescu.com/snapshots</url>
+			<id>ssh-snapshots</id>
+			<url>scp://radu@connect.cotescu.com:2222/home/radu/www/radu/maven2/snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 </project>

@@ -57,8 +57,6 @@ public class Downloader {
 		 * suspicious they return HTTP 403 error code
 		 */
 		connection.setRequestProperty("User-Agent", UA);
-		InputStream is = connection.getInputStream();
-		ReadableByteChannel rbc = Channels.newChannel(is);
 		String fullPath = url.getFile();
 		if (StringUtils.isEmpty(fullPath)) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
@@ -73,8 +71,9 @@ public class Downloader {
 		if (!where.endsWith(File.separator)) {
 			where = where + File.separator;
 		}
-		
 		file = where + file;
+		InputStream is = connection.getInputStream();
+		ReadableByteChannel rbc = Channels.newChannel(is);
 		FileOutputStream fos = new FileOutputStream(file);
 		fos.getChannel().transferFrom(rbc, 0, 1 << 24);
 		return new File(file);
