@@ -14,7 +14,7 @@ import com.cotescu.radu.commons.Downloader;
 
 public class DownloaderTest {
 
-	private static String file;
+	private static File file;
 
 	@Test
 	public final void testDownloadFileFromURLExceptionNotRaised()
@@ -50,9 +50,8 @@ public class DownloaderTest {
 
 	@After
 	public final void tearDown() {
-		File f = new File(file);
-		if (f.exists()) {
-			f.delete();
+		if (file.exists()) {
+			file.delete();
 		}
 	}
 }

@@ -43,7 +43,7 @@ public class Downloader {
 	 *             if the transfer of the file to the specified location cannot
 	 *             be done
 	 */
-	public static String downloadFileFromURL(String from, String where)
+	public static File downloadFileFromURL(String from, String where)
 			throws FileNotFoundException, MalformedURLException, IOException {
 		String file = null;
 		String to = new File("." + File.separator).getCanonicalPath();
@@ -70,13 +70,13 @@ public class Downloader {
 			file = fullPath.substring(fullPath.lastIndexOf("/") + 1,
 					fullPath.length());
 		}
-		if (where.endsWith(File.separator)) {
-			file = where + file;
-		} else {
-			file = where + File.separator + file;
+		if (!where.endsWith(File.separator)) {
+			where = where + File.separator;
 		}
+		
+		file = where + file;
 		FileOutputStream fos = new FileOutputStream(file);
 		fos.getChannel().transferFrom(rbc, 0, 1 << 24);
-		return file;
+		return new File(file);
 	}
 }
