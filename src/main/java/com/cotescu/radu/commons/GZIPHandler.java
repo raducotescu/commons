@@ -18,23 +18,14 @@ public class GZIPHandler {
 	/**
 	 * This method extracts a GZIP compressed text file.
 	 * @param gzipArchive the File representing the GZIP archive
-	 * @param where the folder where the file should be extracted
-	 * @param fileName the desired file name for the extracted file
+	 * @param outputFile the full path wrapped in a File object to the extracted file
 	 * @param shouldAppend flag that sets if the extraction should add the extracted contents to an already existing file with the same name as the desired file name
 	 * @param shouldDeleteArchive flag that sets if the archive should be deleted after a successful extraction
+	 * @return a boolean value indicating the success of the operation (it always should be true, if it is returned)
 	 * @throws IOException if any I/O error is detected
 	 */
-	public static void extract(File gzipArchive, String where, String fileName,
+	public static boolean extract(File gzipArchive, File outputFile,
 			boolean shouldAppend, boolean shouldDeleteArchive) throws IOException {
-		String to = new File("." + File.separator).getCanonicalPath();
-		if (StringUtils.isEmpty(where)) {
-			where = to;
-		}
-		if (!where.endsWith(File.separator)) {
-			where = where + File.separator;
-		}
-		File outputFile = new File(where
-				+ fileName);
 		FileInputStream fis = new FileInputStream(gzipArchive);
 		GZIPInputStream gis = new GZIPInputStream(fis);
 		InputStreamReader isr = new InputStreamReader(gis);
@@ -46,5 +37,6 @@ public class GZIPHandler {
 		}
 		fw.flush();
 		gzipArchive.delete();
+		return true;
 	}
 }

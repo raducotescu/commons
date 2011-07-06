@@ -19,7 +19,8 @@ public class GZIPHandlerTest {
 			loader = ClassLoader.getSystemClassLoader();
 		}
 		String sourceArchive = loader.getResource("loremIpsum.gz").getFile();
-		GZIPHandler.extract(new File(sourceArchive), "", "loremIpsum", false, false);
+		File extractedFile = new File("." + File.separator + "loremIpsum");
+		GZIPHandler.extract(new File(sourceArchive), extractedFile, false, false);
 		File sourceFile = new File(loader.getResource("loremIpsum.test").getFile());
 		File gzipFile = new File("." + File.separator + "loremIpsum");
 		FileInputStream fin1 = new FileInputStream(sourceFile);
