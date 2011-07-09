@@ -44,7 +44,7 @@ public class PropertiesLoader {
 	 * @throws IOException if any IO exception occurs
 	 */
 	public static Properties getPropertiesFromFile(String propertiesFile) throws IOException {
-		File f = new File(propertiesFile);
+		File f = new File(propertiesFile).getCanonicalFile();
 		return getPropertiesFromFile(f);
 	}
 	
