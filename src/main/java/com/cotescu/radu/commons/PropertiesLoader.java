@@ -41,14 +41,13 @@ public class PropertiesLoader {
 					+ propertiesFile);
 			throw e;
 		}
+		p.load(url.openStream());
 		return p;
 	}
 
 	/**
-	 * Returns the properties saved in a properties file.
-	 * 
-	 * @param propertiesFile
-	 *            the file from which to return the properties
+	 * Allows to read properties saved in a file stored in different location from the classpath.
+	 * @param propertiesFile the full path to the file from which to read the properties
 	 * @return a Properties object containing the read properties
 	 * @throws Exception
 	 *             if the file cannot be read
