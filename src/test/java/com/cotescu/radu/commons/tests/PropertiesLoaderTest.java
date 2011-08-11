@@ -47,14 +47,25 @@ public class PropertiesLoaderTest {
 	}
 
 	@Test
-	public final void testGetPropertiesFromFile1() {
-		Properties p = PropertiesLoader.getPropertiesFromFile(FILE);
+	public final void testGetPropertiesFromFile1() throws Exception {
+		Properties p = PropertiesLoader.getPropertiesFromFile(this.getClass().getClassLoader().getResource(FILE).getFile());
 		assertTrue(p.getProperty("foo").equals("bar"));
 	}
 
 	@Test
-	public final void testGetPropertiesFromFile2() {
-		Properties p = PropertiesLoader.getPropertiesFromFile(new File(FILE));
+	public final void testGetPropertiesFromFile2() throws Exception {
+		Properties p = PropertiesLoader.getPropertiesFromFile(new File(this.getClass().getClassLoader().getResource(FILE).getFile()));
+		assertTrue(p.getProperty("foo").equals("bar"));
+	}
+	
+	public final void testGetPropertiesFromFileInClasspath1() throws Exception {
+		Properties p = PropertiesLoader.getPropertiesFromFileInClasspath(FILE);
+		assertTrue(p.getProperty("foo").equals("bar"));
+	}
+
+	@Test
+	public final void testGetPropertiesFromFileInClasspath2() throws Exception {
+		Properties p = PropertiesLoader.getPropertiesFromFileInClasspath(new File(FILE));
 		assertTrue(p.getProperty("foo").equals("bar"));
 	}
 }
