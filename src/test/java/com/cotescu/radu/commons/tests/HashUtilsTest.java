@@ -60,21 +60,21 @@ public class HashUtilsTest {
 	@Test
 	public void testGetHashMD5WithSalt() throws UnsupportedEncodingException,
 			NoSuchAlgorithmException {
-		assertEquals("kKWAzAaYwAIQv1rVqsayMA==",
+		assertEquals("90a580cc0698c00210bf5ad5aac6b230",
 				HashUtils.getHashWithSalt(HASH_INPUT, "MD5", SALT));
 	}
 
 	@Test
 	public void testGetHashSHA1WithSalt() throws UnsupportedEncodingException,
 			NoSuchAlgorithmException {
-		assertEquals("abnpJPAmkaPrXCPw0sbeZLN8dMA=",
+		assertEquals("69b9e924f02691a3eb5c23f0d2c6de64b37c74c0",
 				HashUtils.getHashWithSalt(HASH_INPUT, "SHA-1", SALT));
 	}
 
 	@Test
 	public void testGetHashSHA256WithSalt()
 			throws UnsupportedEncodingException, NoSuchAlgorithmException {
-		assertEquals("AyWeKiwkOQuK1G6tKTy1+Ws6bgUvZYPaODhh7YZZnMQ=",
+		assertEquals("3259e2a2c24390b8ad46ead293cb5f96b3a6e052f6583da383861ed86599cc4",
 				HashUtils.getHashWithSalt(HASH_INPUT, "SHA-256", SALT));
 	}
 
@@ -82,7 +82,7 @@ public class HashUtilsTest {
 	public void testGetHashSHA512WithSalt()
 			throws UnsupportedEncodingException, NoSuchAlgorithmException {
 		assertEquals(
-				"OBY0sg88/ncy/RTA33knFJRXfL31ZLkB7GFJXe2EBRf2HWSEa66lXv+fVH541SZpey4TGp5Q/wxp67C1zOYfQg==",
+				"381634b20f3cfe7732fd14c0df79271494577cbdf564b901ec61495ded840517f61d64846baea55eff9f547e78d526697b2e131a9e50ff0c69ebb0b5cce61f42",
 				HashUtils.getHashWithSalt(HASH_INPUT, "SHA-512", SALT));
 	}
 

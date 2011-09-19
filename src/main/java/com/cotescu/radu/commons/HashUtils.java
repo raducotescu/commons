@@ -73,6 +73,7 @@ public class HashUtils {
 			digest.reset();
 			bytes = digest.digest(bytes);
 		}
-		return Base64.encodeBase64String(bytes);
+		//return Base64.encodeBase64String(bytes);
+		return new BigInteger(1, bytes).toString(16);
 	}
 }
