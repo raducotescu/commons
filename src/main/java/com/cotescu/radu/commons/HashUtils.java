@@ -5,8 +5,6 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import org.apache.commons.codec.binary.Base64;
-
 /**
  * This class provides several useful methods for hashing Strings.
  * 
@@ -73,7 +71,6 @@ public class HashUtils {
 			digest.reset();
 			bytes = digest.digest(bytes);
 		}
-		//return Base64.encodeBase64String(bytes);
 		return new BigInteger(1, bytes).toString(16);
 	}
 }
