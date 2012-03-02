@@ -2,6 +2,7 @@ package com.cotescu.radu.commons;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
 
@@ -20,41 +21,38 @@ public class PropertiesLoader {
 	 * @param propertiesFile
 	 *            the file (as String) from which to return the properties
 	 * @return a Properties object containing the read properties
-	 * @throws Exception
-	 *             if the file cannot be read
+	 * @throws IOException
+	 *             if IO errors occur while reading the properties file
 	 * @see Properties
 	 */
 	public static Properties getPropertiesFromFileInClasspath(
-			String propertiesFile) throws Exception {
+			String propertiesFile) throws IOException {
 		Properties p = new Properties();
 		ClassLoader loader = PropertiesLoader.class.getClassLoader();
 		if (loader == null) {
 			loader = ClassLoader.getSystemClassLoader();
 		}
 		URL url = loader.getResource(propertiesFile);
-		try {
-			if (url == null)
-				throw new Exception();
-			p.load(url.openStream());
-		} catch (Exception e) {
-			System.err.println("Could not load configuration file: "
+		if (url == null)
+			throw new IOException("Unable to get resource from "
 					+ propertiesFile);
-			throw e;
-		}
 		p.load(url.openStream());
 		return p;
 	}
 
 	/**
-	 * Allows to read properties saved in a file stored in different location from the classpath.
-	 * @param propertiesFile the full path to the file from which to read the properties
+	 * Allows to read properties saved in a file stored in different location
+	 * from the classpath.
+	 * 
+	 * @param propertiesFile
+	 *            the full path to the file from which to read the properties
 	 * @return a Properties object containing the read properties
-	 * @throws Exception
-	 *             if the file cannot be read
+	 * @throws IOException
+	 *             if IO errors occur while reading the properties file
 	 * @see Properties
 	 */
 	public static Properties getPropertiesFromFileInClasspath(
-			File propertiesFile) throws Exception {
+			File propertiesFile) throws IOException {
 		return getPropertiesFromFileInClasspath(propertiesFile.getName());
 	}
 
@@ -64,21 +62,15 @@ public class PropertiesLoader {
 	 * @param propertiesFile
 	 *            the file from which to return the properties
 	 * @return a Properties object containing the read properties
-	 * @throws Exception
-	 *             if the file cannot be read
+	 * @throws IOException
+	 *             if IO errors occur while reading the properties file
 	 */
 	public static Properties getPropertiesFromFile(File propertiesFile)
-			throws Exception {
+			throws IOException {
 		Properties p;
-		try {
-			FileInputStream fis = new FileInputStream(propertiesFile);
-			p = new Properties();
-			p.load(fis);
-		} catch (Exception e) {
-			System.err.println("Could not load configuration file: "
-					+ propertiesFile);
-			throw e;
-		}
+		FileInputStream fis = new FileInputStream(propertiesFile);
+		p = new Properties();
+		p.load(fis);
 		return p;
 	}
 
@@ -89,10 +81,10 @@ public class PropertiesLoader {
 	 *            the file from which to return the properties
 	 * @return a Properties object containing the read properties
 	 * @throws Exception
-	 *             if the file cannot be read
+	 *             if IO errors occur while reading the properties file
 	 */
 	public static Properties getPropertiesFromFile(String propertiesFile)
-			throws Exception {
+			throws IOException {
 		File f = new File(propertiesFile);
 		return getPropertiesFromFile(f);
 	}

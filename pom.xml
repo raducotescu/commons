@@ -120,11 +120,11 @@
 	</reporting>
 	<distributionManagement>
 		<repository>
-			<id>ftp-releases</id>
+			<id>cotescu.com.releases</id>
 			<url>ftp://connect.cotescu.com/releases</url>
 		</repository>
 		<snapshotRepository>
-			<id>ftp-snapshots</id>
+			<id>cotescu.com.snapshots</id>
 			<url>ftp://connect.cotescu.com/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
